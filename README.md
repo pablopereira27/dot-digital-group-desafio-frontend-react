@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# 🎨 Frontend Challenge - Dot Digital Group
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🎯 Objetivo
 
-Currently, two official plugins are available:
+Desenvolver uma **interface web responsiva** utilizando **React 19 + TypeScript + Vite**, que consuma a API criada no desafio de Backend e permita visualizar e interagir com cursos, turmas e matrículas de usuários.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Requisitos
 
-## React Compiler
+1. **Listagem de Cursos e Turmas**
+   - Listar cursos com suas turmas disponíveis (status = "disponível").
+   - Filtros:
+     - Por título (campo de busca).
+     - Por temas (checkbox: inovação, tecnologia, marketing, empreendedorismo, agro).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. **Cadastro de Usuário**
+   - Formulário com:
+     - Nome
+     - E-mail
+     - Botão "Cadastrar"
+   - Exibir mensagem de sucesso ou erro.
 
-## Expanding the ESLint configuration
+3. **Matrícula**
+   - Exibir botão "Matricular" nas turmas disponíveis.
+   - Ao clicar, solicitar o e-mail ou permitir seleção de um usuário existente.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+4. **Validação de Regras de Negócio**
+   - Não permitir matrícula em turma encerrada.
+   - Não permitir matrícula duplicada (mesmo usuário em duas turmas do mesmo curso).
+   - Não permitir matrícula fora da data de início e fim.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+5. **Visualizar Matrículas**
+   - Campo para selecionar ou digitar um usuário.
+   - Listar cursos e turmas em que ele está matriculado.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Diferenciais
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Utilizar **React** como biblioteca para SPA.
+- Não utilizar bibliotecas/frameworks de CSS (Bootstrap, Material UI, Tailwind).
+- Interface responsiva e com boa usabilidade.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Entrega
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Disponibilizar o código em um **arquivo ZIP**.
+- Incluir um **README.md** com:
+  - Instruções de como rodar o projeto.
+  - Prints ou vídeo curto demonstrando o funcionamento.
+  - Documentações e observações relevantes.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
