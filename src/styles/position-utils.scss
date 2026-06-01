@@ -1,0 +1,147 @@
+@use "sass:map";
+@use "./_breakpoints" as *;
+
+@function prefix-class($prefix, $class) {
+  @if $prefix == "" or $prefix == null {
+    @return $class;
+  } @else {
+    @return $prefix + "-" + $class;
+  }
+}
+
+@mixin generate-base-utils($property, $prefix, $values) {
+  @each $class, $value in $values {
+    .#{prefix-class($prefix, $class)} {
+      #{$property}: $value;
+    }
+  }
+}
+
+@mixin generate-responsive-utils($property, $prefix, $values) {
+  @each $bp, $size in $breakpoints {
+    @include respond-to($bp) {
+      @each $class, $value in $values {
+        .#{$bp}\:#{prefix-class($prefix, $class)} {
+          #{$property}: $value;
+        }
+      }
+    }
+  }
+}
+
+$properties: (
+  "display": (
+    "prefix": "",
+    "values": (
+      "block": block,
+      "flex": flex,
+      "grid": grid,
+      "inline-flex": inline-flex,
+    ),
+  ),
+  "flex-direction": (
+    "prefix": "flex",
+    "values": (
+      "row": row,
+      "col": column,
+    ),
+  ),
+  "align-content": (
+    "prefix": "align-content",
+    "values": (
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "between": space-between,
+      "around": space-around,
+      "evenly": space-evenly,
+    ),
+  ),
+  "align-items": (
+    "prefix": "align-items",
+    "values": (
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "baseline": baseline,
+      "stretch": stretch,
+    ),
+  ),
+  "align-self": (
+    "prefix": "align-self",
+    "values": (
+      "auto": auto,
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "baseline": baseline,
+      "stretch": stretch,
+    ),
+  ),
+  "justify-content": (
+    "prefix": "justify-content",
+    "values": (
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "between": space-between,
+      "around": space-around,
+      "evenly": space-evenly,
+    ),
+  ),
+  "justify-items": (
+    "prefix": "justify-items",
+    "values": (
+      "start": flex-start,
+      "end": flex-end,
+      "center": center,
+      "stretch": stretch,
+    ),
+  ),
+);
+
+@each $property, $config in $properties {
+  $prefix: map.get($config, "prefix");
+  $values: map.get($config, "values");
+
+  @include generate-base-utils($property, $prefix, $values);
+}
+
+@each $property, $config in $properties {
+  $prefix: map.get($config, "prefix");
+  $values: map.get($config, "values");
+
+  @include generate-responsive-utils($property, $prefix, $values);
+}
+
+.flex-auto {
+  flex: auto;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-0 {
+  flex: 0;
+}
+
+// Wrap
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+// Position
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.sticky {
+  position: sticky;
+}

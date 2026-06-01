@@ -1,0 +1,18 @@
+.chip-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: rgba(var(--color-rgb-black), 0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+
+  &.chip-lg {
+    padding: 0.6rem 1rem;
+  }
+}

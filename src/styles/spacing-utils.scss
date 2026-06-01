@@ -1,0 +1,40 @@
+$space-scale: (
+  auto: auto,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem,
+);
+
+@mixin generate-spacing-utils($property, $prefix) {
+  @each $key, $value in $space-scale {
+    .#{$prefix}-#{$key} {
+      #{$property}: $value;
+    }
+    .#{$prefix}x-#{$key} {
+      #{$property}-left: $value;
+      #{$property}-right: $value;
+    }
+    .#{$prefix}y-#{$key} {
+      #{$property}-top: $value;
+      #{$property}-bottom: $value;
+    }
+    .#{$prefix}t-#{$key} {
+      #{$property}-top: $value;
+    }
+    .#{$prefix}r-#{$key} {
+      #{$property}-right: $value;
+    }
+    .#{$prefix}b-#{$key} {
+      #{$property}-bottom: $value;
+    }
+    .#{$prefix}l-#{$key} {
+      #{$property}-left: $value;
+    }
+  }
+}
+
+@include generate-spacing-utils(margin, "m");
+@include generate-spacing-utils(padding, "p");
+@include generate-spacing-utils(gap, "gap");

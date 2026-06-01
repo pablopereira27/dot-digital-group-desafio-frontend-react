@@ -1,0 +1,48 @@
+@use "./colors" as *;
+@use "./breakpoints" as *;
+@use "sass:color";
+
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+
+  @include respond-to("md") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to("2xl") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  &.grid-items-1 {
+    grid-template-columns: 1fr;
+  }
+  &.grid-items-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  &.grid-items-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--color-gray-400);
+  border: 1px solid var(--color-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  color: var(--color-text);
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @include respond-to("md") {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--color-gray-300);
+  }
+}
