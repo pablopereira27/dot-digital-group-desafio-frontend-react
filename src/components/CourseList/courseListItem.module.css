@@ -1,0 +1,13 @@
+.courseCard {
+  max-width: 500px;
+}
+
+.courseImage {
+  width: calc(100% + 2rem);
+  margin: 1rem -1rem 0.5rem;
+  height: 250px;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
