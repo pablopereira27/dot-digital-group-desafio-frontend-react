@@ -1,0 +1,155 @@
+@use "sass:color";
+@use "sass:map";
+
+@function tint($color, $percent) {
+  @return color.mix(white, $color, $percent);
+}
+
+@function shade($color, $percent) {
+  @return color.mix(black, $color, $percent);
+}
+
+@function getColor($mode, $name) {
+  @return map.get(map.get($colors, $mode), $name);
+}
+
+@function hex-to-rgb-string($hex) {
+  $red: color.channel($hex, "red", $space: rgb);
+  $green: color.channel($hex, "green", $space: rgb);
+  $blue: color.channel($hex, "blue", $space: rgb);
+  @return "#{$red}, #{$green}, #{$blue}";
+}
+
+@function hex-to-rgb($hex) {
+  $red: color.channel($hex, "red", $space: rgb);
+  $green: color.channel($hex, "green", $space: rgb);
+  $blue: color.channel($hex, "blue", $space: rgb);
+  @return ($red, $green, $blue);
+}
+
+$colors: (
+  "light": (
+    "primary": #3b82f6,
+    "accent": #8b5cf6,
+    "success": #10b981,
+    "warning": #f59e0b,
+    "danger": #ef4444,
+    "white": #eaeaea,
+    "black": #1a1a1a,
+  ),
+  "light-grayscale": (
+    "gray-100": #f9fafb,
+    "gray-200": #f3f4f6,
+    "gray-300": #e5e7eb,
+    "gray-400": #d1d5db,
+    "gray-500": #9ca3af,
+    "gray-600": #6b7280,
+    "gray-700": #4b5563,
+    "gray-800": #374151,
+    "gray-900": #111827,
+  ),
+  "dark": (
+    "primary": #60a5fa,
+    "accent": #a78bfa,
+    "success": #34d399,
+    "warning": #fbbf24,
+    "danger": #f87171,
+  ),
+  "inverse-grayscale": (
+    "gray-100": #111827,
+    "gray-200": #1f2937,
+    "gray-300": #374151,
+    "gray-400": #4b5563,
+    "gray-500": #6b7280,
+    "gray-600": #9ca3af,
+    "gray-700": #d1d5db,
+    "gray-800": #e5e7eb,
+    "gray-900": #f9fafb,
+  ),
+);
+
+$white: getColor("light", "white");
+$black: getColor("light", "black");
+$primary: getColor("light", "primary");
+$accent: getColor("light", "accent");
+$success: getColor("light", "success");
+$warning: getColor("light", "warning");
+$danger: getColor("light", "danger");
+
+$gray-100: getColor("light-grayscale", "gray-100");
+$gray-200: getColor("light-grayscale", "gray-200");
+$gray-300: getColor("light-grayscale", "gray-300");
+$gray-400: getColor("light-grayscale", "gray-400");
+$gray-500: getColor("light-grayscale", "gray-500");
+$gray-600: getColor("light-grayscale", "gray-600");
+$gray-700: getColor("light-grayscale", "gray-700");
+$gray-800: getColor("light-grayscale", "gray-800");
+$gray-900: getColor("light-grayscale", "gray-900");
+
+$dark-primary: getColor("dark", "primary");
+$dark-accent: getColor("dark", "accent");
+$dark-success: getColor("dark", "success");
+$dark-warning: getColor("dark", "warning");
+$dark-danger: getColor("dark", "danger");
+
+$inverse-gray-100: getColor("inverse-grayscale", "gray-100");
+$inverse-gray-200: getColor("inverse-grayscale", "gray-200");
+$inverse-gray-300: getColor("inverse-grayscale", "gray-300");
+$inverse-gray-400: getColor("inverse-grayscale", "gray-400");
+$inverse-gray-500: getColor("inverse-grayscale", "gray-500");
+$inverse-gray-600: getColor("inverse-grayscale", "gray-600");
+$inverse-gray-700: getColor("inverse-grayscale", "gray-700");
+$inverse-gray-800: getColor("inverse-grayscale", "gray-800");
+$inverse-gray-900: getColor("inverse-grayscale", "gray-900");
+
+:root {
+  @each $name, $color in map.get($colors, "light") {
+    --color-#{$name}: #{$color};
+    --color-#{$name}-tint-10: #{tint($color, 10%)};
+    --color-#{$name}-tint-20: #{tint($color, 20%)};
+    --color-#{$name}-shade-10: #{shade($color, 10%)};
+    --color-#{$name}-shade-20: #{shade($color, 20%)};
+    --color-rgb-#{$name}: #{hex-to-rgb-string($color)};
+  }
+
+  @each $name, $color in map.get($colors, "light-grayscale") {
+    --color-#{$name}: #{$color};
+    --color-#{$name}-tint-10: #{tint($color, 10%)};
+    --color-#{$name}-tint-20: #{tint($color, 20%)};
+    --color-#{$name}-shade-10: #{shade($color, 10%)};
+    --color-#{$name}-shade-20: #{shade($color, 20%)};
+    --color-rgb-#{$name}: #{hex-to-rgb-string($color)};
+  }
+
+  --color-text: var(--color-black);
+  --color-bg: var(--color-white);
+  --color-border: var(--color-gray-300);
+  --background-page: var(--gray-200);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @each $name, $color in map.get($colors, "dark") {
+      --color-#{$name}: #{$color};
+      --color-#{$name}-tint-10: #{tint($color, 10%)};
+      --color-#{$name}-tint-20: #{tint($color, 20%)};
+      --color-#{$name}-shade-10: #{shade($color, 10%)};
+      --color-#{$name}-shade-20: #{shade($color, 20%)};
+      --color-rgb-#{$name}: #{hex-to-rgb-string($color)};
+    }
+
+    @each $name, $color in map.get($colors, "inverse-grayscale") {
+      --color-#{$name}: #{$color};
+      --color-#{$name}-tint-10: #{tint($color, 10%)};
+      --color-#{$name}-tint-20: #{tint($color, 20%)};
+      --color-#{$name}-shade-10: #{shade($color, 10%)};
+      --color-#{$name}-shade-20: #{shade($color, 20%)};
+      --color-rgb-#{$name}: #{hex-to-rgb-string($color)};
+    }
+
+    --color-text: var(--color-white);
+    --color-bg: var(--color-black);
+    --color-border: var(--color-gray-700);
+    --background-page: var(--gray-200);
+  }
+}

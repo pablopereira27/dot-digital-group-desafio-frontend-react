@@ -1,0 +1,17 @@
+@use "sass:map";
+
+$breakpoints: (
+  "xs": 0px,
+  "sm": 480px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1280px,
+  "xxl": 1536px // 1,5x 1024, “desktop médio”
+);
+
+// Mixin para usar facilmente
+@mixin respond-to($breakpoint) {
+  @media (min-width: map.get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
