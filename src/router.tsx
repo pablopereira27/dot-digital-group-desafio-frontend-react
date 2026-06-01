@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router";
 
 import Layout from "./components/Layout/Layout";
 import CourseListPage from "./pages/Courses/CourseListPage";
+import UserRegisterPage from "./pages/Users/UserRegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
           );
           return res.json();
         },
+      },
+      {
+        path: "users/register",
+        element: <UserRegisterPage />,
       },
     ],
   },
