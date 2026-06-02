@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router";
 import Layout from "./components/Layout/Layout";
 import CourseListPage from "./pages/Courses/CourseListPage";
 import UserRegisterPage from "./pages/Users/UserRegisterPage";
+import EnrollmentsPage from "./pages/Enrollments/EnrollmentsPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,16 @@ const router = createBrowserRouter([
       {
         path: "users/register",
         element: <UserRegisterPage />,
+      },
+      {
+        path: "enrollments",
+        element: <EnrollmentsPage />,
+        loader: async () => {
+          const res = await fetch(
+            "http://localhost:3000/users?page=1&limit=100",
+          );
+          return res.json();
+        },
       },
     ],
   },
