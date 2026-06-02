@@ -46,3 +46,13 @@ Desenvolver uma **interface web responsiva** utilizando **React 19 + TypeScript 
   - Prints ou vídeo curto demonstrando o funcionamento.
   - Documentações e observações relevantes.
 
+## Como rodar?
+- Instale os pacotes utilizando o comando `npm install`
+- Inicie a aplicação utilizando o comando `npm start`
+
+## 🎨 Tecnologias Utilizadas
+
+- **React** → biblioteca para construção da interface de usuário.
+- **React Router** → gerenciamento de rotas e navegação entre páginas.
+- **Sass (SCSS)** → pré-processador CSS para estilos modulares e reutilizáveis.
+- **Vite** → ferramenta de build e desenvolvimento rápido (utilizada para inicializar o projeto).
